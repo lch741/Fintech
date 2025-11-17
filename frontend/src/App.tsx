@@ -4,18 +4,37 @@ import CardList from "./Components/CardList/CardList";
 import Search from "./Components/Search/Search";
 import { searchCompanies } from "./api";
 import { CompanySearch } from "./company";
+import ListPortfolio from "./Components/Portfolio/ListPortfolio/ListPortfolio";
+
 
 function App() {
   const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    console.log(e);
+  const onPortfoliocreate = (e: any) => {
+    e.preventDefault();
+    const exists = portfolioValues.find((value) => value === e.target[0].value);
+    if (exists) return;
+    const updatedPortfolio = [...portfolioValues, e.target[0].value];
+    setPortfolioValues(updatedPortfolio);
   };
 
-  const onClick = async(e: SyntheticEvent) => {
+  const onPortfolioDelete = (e: any) => {
+    e.preventDefault();
+    const removed = portfolioValues.filter((value)=>{
+      return value !== e.target[0].value;
+    });
+    setPortfolioValues(removed);
+  };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const onSearchSubmit = async(e: SyntheticEvent) => {
+    e.preventDefault();
     const result = await searchCompanies(search);
     if (typeof result === "string") {
       setServerError(result);
@@ -27,9 +46,10 @@ function App() {
   };
   return (
     <div className="App">
-      <Search onClick={onClick} search={search} handleChange={handleChange} />
-      <CardList searchResults={searchResult} />
-      {serverError && <div>{serverError}</div>}
+      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
+      <ListPortfolio portfolioValues={portfolioValues} onPortfolioDelete = {onPortfolioDelete} />
+      <CardList searchResults={searchResult} onPortfoliocreate={onPortfoliocreate} />
+      {serverError && <div>Unable to connect to API</div>}
     </div>
   );
 }
