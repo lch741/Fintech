@@ -25,6 +25,7 @@ const Table = (props: Props) => {
         <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
           {configs[0].render(company)}
         </td>
+        
         <td className="p-3">{configs[1].render(company)}</td>
       </tr>
     );
