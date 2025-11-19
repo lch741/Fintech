@@ -35,4 +35,4 @@ const CompanyPage = (props: Props) => {
   );
 };
 
-export default CompanyPage
+export default CompanyPage;
