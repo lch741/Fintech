@@ -154,13 +154,16 @@ export interface CompanyBalanceSheet {
   cik: string;
   fillingDate: string;
   acceptedDate: string;
-  calendarYear: string;
+  fiscalYear: string;
   period: string;
   cashAndCashEquivalents: number;
   shortTermInvestments: number;
-  cashAndShortTermInvestments: number;
-  netReceivables: number;
+	cashAndShortTermInvestments: number;
+	netReceivables: number;
+	accountsReceivables: number;
+	otherReceivables: number;
   inventory: number;
+  prepaids: number;
   otherCurrentAssets: number;
   totalCurrentAssets: number;
   propertyPlantEquipmentNet: number;
@@ -173,8 +176,12 @@ export interface CompanyBalanceSheet {
   totalNonCurrentAssets: number;
   otherAssets: number;
   totalAssets: number;
+  totalPayables: number;
   accountPayables: number;
+  otherPayables: number;
+  accruedExpenses: number;
   shortTermDebt: number;
+  capitalLeaseObligationsCurrent: number;
   taxPayables: number;
   deferredRevenue: number;
   otherCurrentLiabilities: number;
@@ -187,21 +194,20 @@ export interface CompanyBalanceSheet {
   otherLiabilities: number;
   capitalLeaseObligations: number;
   totalLiabilities: number;
+  treasuryStock: number;
   preferredStock: number;
   commonStock: number;
   retainedEarnings: number;
+  additionalPaidInCapital: number;
   accumulatedOtherComprehensiveIncomeLoss: number;
-  othertotalStockholdersEquity: number;
+  otherTotalStockholdersEquity: number;
   totalStockholdersEquity: number;
   totalEquity: number;
-  totalLiabilitiesAndStockholdersEquity: number;
   minorityInterest: number;
   totalLiabilitiesAndTotalEquity: number;
   totalInvestments: number;
   totalDebt: number;
   netDebt: number;
-  link: string;
-  finalLink: string;
 }
 
 export interface CompanyCashFlow {

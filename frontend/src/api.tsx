@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CompanyKeyMetrics, CompanyProfile,CompanySearch,CompanyIncomeStatement, } from "./company";
+import { CompanyKeyMetrics, CompanyProfile,CompanySearch,CompanyIncomeStatement, CompanyBalanceSheet, } from "./company";
 
 export interface SearchResponse {
   data: CompanySearch[];
@@ -54,3 +54,15 @@ export const getIncomeStatement  = async (query:string) => {
     console.log("error message from API: ", error.message)
   }
 };
+
+export const getBalanceSheet  = async (query:string) => {
+  try{
+    const data = await axios.get<CompanyBalanceSheet[]>(
+      `https://financialmodelingprep.com/stable/balance-sheet-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+    );
+    return data;
+  } catch(error:any){
+    console.log("error message from API: ", error.message)
+  }
+};
+
