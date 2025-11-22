@@ -22,11 +22,17 @@ const CompanyPage = (props: Props) => {
   return (
     <>
       {company ? (
-        <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+        <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-auto">
           <Sidebar />
-          <CompanyDashboard ticker={ticker!}>
+          <CompanyDashboard ticker={ticker!} >
             <Tile title="Company Name" subtitle={company.companyName} />
-          </CompanyDashboard>
+            <Tile title="Price" subtitle={company.price.toString()} />
+            <Tile title="Sector" subtitle={company.sector} />
+            <Tile title="Website" subtitle={company.website} />
+            <p className="max-w-screen-xl bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4">
+              {company.description}
+            </p>
+            </CompanyDashboard>
         </div>
       ) : (
         <div>Company Not Found!</div>
