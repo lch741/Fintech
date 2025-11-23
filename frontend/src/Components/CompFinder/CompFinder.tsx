@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CompanyCompData } from '../../company';
 import { getCompData } from '../../api';
 import ComFinderItem from './ComFinderItem/ComFinderItem';
+import Spinner from "../Spinner/Spinner";
 
 type Props = {
     ticker:string;
@@ -15,14 +16,18 @@ const CompFinder = ({ticker}: Props) => {
             setCompanyData(value?.data);
         };
         getComps();
-    },[]);
+    },[ticker]);
   return (
     <div className="inline-flex rounded-md shadow-sm m-4">
-        {companyData?.map((comp:any)=>{
+        {companyData ? (
+            companyData?.map((comp:any)=>{
             return <ComFinderItem ticker={comp.symbol} />;
-        })}
+        })
+    ):(
+        <Spinner />
+    )}
     </div>
-  )
+  );
 }
 
 export default CompFinder

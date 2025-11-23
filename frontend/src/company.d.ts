@@ -305,3 +305,11 @@ export interface CompanyCompData {
   price: number;
   mktCap: number;
 }
+
+export interface CompanyTenK {
+  symbol: string;
+  fiscalYear: string;
+  period: string;
+  linkXlsx: string;
+  linkJson: string;
+}
