@@ -6,7 +6,7 @@ import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
-import BanlanceSheet from "../BanlanceSheet/BanlanceSheet";
+import BanlanceSheet from "../Components/BanlanceSheet/BanlanceSheet";
 import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
 
 
