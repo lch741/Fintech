@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -10,9 +11,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251128232205_SeedRole")]
+    partial class SeedRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
@@ -45,13 +48,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = "6aeb115d-1488-4abe-bf30-fa3ae713ce37",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2",
+                            Id = "47c97ad7-2657-47f2-8e9b-8f81e86a751e",
                             Name = "User",
                             NormalizedName = "USER"
                         });
