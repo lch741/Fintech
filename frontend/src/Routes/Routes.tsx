@@ -8,6 +8,8 @@ import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
 import BanlanceSheet from "../Components/BanlanceSheet/BanlanceSheet";
 import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
+import LoginPage from "../Pages/LoginPage/LoginPage";
+import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 
 
 export const router = createBrowserRouter([
@@ -16,6 +18,8 @@ export const router = createBrowserRouter([
         element:<App />,
         children:[
             {path:"",element:<HomePage />},
+            { path: "login", element: <LoginPage /> },
+            { path: "register", element: <RegisterPage /> },
             {path:"search",element:<SearchPage />},
             {path:"design-guide",element:<DesignGuide/>},
             {path:"company/:ticker",element:<CompanyPage />,
