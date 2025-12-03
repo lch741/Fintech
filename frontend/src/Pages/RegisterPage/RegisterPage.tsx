@@ -7,8 +7,8 @@ import { useAuth } from "../../Context/useAuth";
 type Props = {};
 
 type RegisterFormsInputs = {
-  email: string;
   userName: string;
+  email: string;
   password: string;
 };
 
@@ -27,7 +27,7 @@ const RegisterPage = (props: Props) => {
   } = useForm<RegisterFormsInputs>({ resolver: yupResolver(validation) });
 
   const handleLogin = (form: RegisterFormsInputs) => {
-    registerUser(form.email, form.userName, form.password);
+    registerUser(form.userName,form.email,form.password);
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

@@ -22,8 +22,8 @@ export const registerAPI = async (username:string,email:string,password:string) 
     try{
         const data = await axios.post<UserProfileToken>(api+"account/register",
             {
-                email : email,
                 username : username,
+                email : email,
                 password : password,
             }
         );
