@@ -5,6 +5,7 @@ import RatioList from "../RatioList/RatioList";
 import { useOutlet, useOutletContext } from 'react-router';
 import Spinner from '../Spinner/Spinner';
 import {formatLargeNonMonetaryNumber,formatRatio,} from "../../Helpers/NumberFormatting";
+import StockComment from '../StockComment/StockComment';
 
 interface Props {}
 
@@ -79,6 +80,7 @@ const CompanyProfile = (props: Props) => {
       {companyData ?(
         <>
           <RatioList config={tableConfig} data={companyData} />
+          <StockComment stockSymbol={ticker} />
         </>
       ):(
         <Spinner />
