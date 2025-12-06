@@ -60,7 +60,7 @@ namespace api.Controllers
                 }
             }
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser!);
-            if(userPortfolio.Any(e=>e.Symbol.ToLower()==symbol.ToLower()))
+            if(userPortfolio.Any(e=>e.Symbol.ToLower().Trim()==symbol.ToLower().Trim()))
                 return BadRequest("Cannot add same stock to portfolio");
             
             var portfolioModel = new Portfolio
@@ -87,7 +87,7 @@ namespace api.Controllers
             var username = User.GetUsername();
             var appUser = await _userManager.FindByNameAsync(username);
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser!);
-            var filteredStock = userPortfolio.Where(s=>s.Symbol.ToLower()==symbol.ToLower()).ToList();
+            var filteredStock = userPortfolio.Where(s=>s.Symbol.ToLower().Trim()==symbol.ToLower().Trim()).ToList();
             if (filteredStock.Count()==1)
             {
                 await _portfolioRepo.DeletePortfolio(appUser!,symbol);
