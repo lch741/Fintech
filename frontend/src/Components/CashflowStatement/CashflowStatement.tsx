@@ -19,18 +19,6 @@ const config = [
       formatLargeMonetaryNumber(company.operatingCashFlow),
   },
   {
-    label: "Investing Cashflow",
-    render: (company: CompanyCashFlow) =>
-      formatLargeMonetaryNumber(company.netCashUsedForInvestingActivites),
-  },
-  {
-    label: "Financing Cashflow",
-    render: (company: CompanyCashFlow) =>
-      formatLargeMonetaryNumber(
-        company.netCashUsedProvidedByFinancingActivities
-      ),
-  },
-  {
     label: "Cash At End of Period",
     render: (company: CompanyCashFlow) =>
       formatLargeMonetaryNumber(company.cashAtEndOfPeriod),
