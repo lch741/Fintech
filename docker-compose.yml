@@ -1,20 +1,16 @@
-version: "3.9"
-
 services:
   backend:
     build: ./api
     container_name: fintech-backend
-
     ports:
       - "5045:8080"
-
     volumes:
       - ./Data:/Data
-  
+
   frontend:
-  build: ./frontend
-  container_name: fintech-frontend
-  ports:
-    - "3000:3000"
-  depends_on:
-    - backend
+    build: ./frontend
+    container_name: fintech-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
