@@ -15,7 +15,7 @@ const StockCommentListItem = ({comment}: Props) => {
               {comment.title}
             </p>
           </div>
-          <p className="text-dark text-sm">@{comment.createdBy}</p>
+          <p className="text-dark text-sm">@{comment.createBy}</p>
         </div>
       </div>
       <p className="-mt-4 text-gray-500">{comment.content}</p>
