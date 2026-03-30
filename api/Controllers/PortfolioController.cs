@@ -76,7 +76,7 @@ namespace api.Controllers
             }
             else
             {
-                return Created();
+                return StatusCode(201,"Portfolio created successfully");
             }
         }
 
