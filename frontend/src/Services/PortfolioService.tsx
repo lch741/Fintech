@@ -6,7 +6,7 @@ const api = "http://localhost:5045/api/portfolio/";
 
 export const portfolioAddAPI = async (symbol:string) => {
     try{
-        const data = await axios.post<PortfolioPost>(api+`?symbol= ${symbol}`,);
+        const data = await axios.post<PortfolioPost>(api+`?symbol= ${symbol.trim()}`,);
         return data;
     }catch(error){
         handleError(error);
@@ -24,7 +24,7 @@ export const portfolioGetAPI = async () => {
 
 export const portfolioDeleteAPI = async (symbol:string) => {
     try{
-        const data = await axios.delete<PortfolioPost>(api+`?symbol= ${symbol}`,);
+        const data = await axios.delete<PortfolioPost>(api+`?symbol= ${symbol.trim()}`,);
         return data;
     }catch(error){
         handleError(error);
