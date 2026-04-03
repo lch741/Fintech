@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { CommentPost,CommentGet } from "../Models/Comment";
 
-const api = "http://fintech-gcdvg7fyewdxgme6.australiaeast-01.azurewebsites.net/api/comment/";
+const api = "https://fintech-gcdvg7fyewdxgme6.australiaeast-01.azurewebsites.net/api/comment/";
 
 export const commentPostAPI = async (title:string,content:string,symbol:string) => {
     try{

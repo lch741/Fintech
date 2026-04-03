@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../Models/User";
 
-const api = "http://fintech-gcdvg7fyewdxgme6.australiaeast-01.azurewebsites.net/api/";
+const api = "https://fintech-gcdvg7fyewdxgme6.australiaeast-01.azurewebsites.net/api/";
 
 export const loginAPI = async (username:string,password:string) => {
     try{
