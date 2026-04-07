@@ -13,9 +13,21 @@ type RegisterFormsInputs = {
 };
 
 const validation = Yup.object().shape({
-  email: Yup.string().required("Email is required"),
-  userName: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Email is required"),
+
+  userName: Yup.string()
+    .required("Username is required")
+    .min(3, "Username must be at least 3 characters"),
+
+  password: Yup.string()
+    .required("Password is required")
+    .min(12, "Password must be at least 12 characters")
+    .matches(/[a-z]/, "Must contain a lowercase letter")
+    .matches(/[A-Z]/, "Must contain an uppercase letter")
+    .matches(/[0-9]/, "Must contain a number")
+    .matches(/[^a-zA-Z0-9]/, "Must contain a special character"),
 });
 
 const RegisterPage = (props: Props) => {
@@ -95,6 +107,9 @@ const RegisterPage = (props: Props) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   {...register("password")}
                 />
+                <p className="text-gray-400 text-xs mt-1">
+                  Must be at least 12 characters, include uppercase, lowercase, number, and special character.
+                </p>
                 {errors.password ? (
                   <p className="text-white">{errors.password.message}</p>
                 ) : (
