@@ -9,7 +9,7 @@ import axios from "axios";
 type UserContextType = {
   user: UserProfile | null;
   token: string | null;
-  registerUser: (email: string, username: string, password: string) => void;
+  registerUser: (username: string, email: string, password: string) => void;
   loginUser: (username: string, password: string) => void;
   logout: () => void;
   isLoggedIn: () => boolean;
@@ -33,7 +33,16 @@ export const UserProvider = ({ children }: Props) => {
       setToken(token);
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
+    const interceptor = axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = "Bearer " + token;
+    }
+    return config;
+    });
     setIsReady(true);
+    return () => {axios.interceptors.request.eject(interceptor);
+    }
   }, []);
 
   const registerUser = async (
@@ -52,7 +61,8 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
-          toast.success("Login Success!");
+          axios.defaults.headers.common["Authorization"] = "Bearer " + res?.data.token;
+          toast.success("Registration Success!");
           navigate("/search");
         }
       })
@@ -71,6 +81,7 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
+          axios.defaults.headers.common["Authorization"] = "Bearer " + res?.data.token;
           toast.success("Login Success!");
           navigate("/search");
         }
