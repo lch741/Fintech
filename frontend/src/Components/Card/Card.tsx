@@ -1,5 +1,4 @@
 import React, { SyntheticEvent } from "react";
-import "./Card.css";
 import { CompanySearch } from "../../company";
 import AddPortfolio from "../Portfolio/AddPortfolio/AddPortfolio";
 import { Link } from "react-router-dom";
@@ -24,7 +23,6 @@ const Card: React.FC<Props> = ({
       <Link to={`/company/${searchResult.symbol}/company-profile`} className="font-bold text-center text-veryDarkViolet md:text-left">
         {searchResult.name} ({searchResult.symbol})
       </Link>
-      <p className="text-veryDarkBlue">{searchResult.currency}</p>
       <p className="font-bold text-veryDarkBlue">
         {searchResult.exchange} - {searchResult.exchangeFullName}
       </p>
