@@ -73,7 +73,7 @@ namespace api.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName == loginDto.Username);
+            var user = await _userManager.FindByNameAsync(loginDto.Username);
 
             if(user == null)
                 return Unauthorized("Invalid username!");
