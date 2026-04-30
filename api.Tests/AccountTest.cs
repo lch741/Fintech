@@ -79,4 +79,37 @@ public class AccountTest
         // Assert
         Assert.IsType<OkObjectResult>(result);
     }
+
+    [Fact]
+    public async Task Login_ReturnsUnauthorized_WhenPasswordWrong()
+    {
+        // Arrange
+        var userManager = MockUserManager();
+        var signInManager = MockSignInManager();
+        var tokenService = new Mock<ITokenService>();
+
+        var user = new AppUser { UserName = "test" };
+
+        userManager.Setup(x => x.Users)
+                .Returns(new List<AppUser> { user }.AsQueryable());
+
+        signInManager.Setup(x => x.CheckPasswordSignInAsync(user, "wrongpass", false))
+                    .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Failed);
+
+        var controller = new AccountController(
+            userManager.Object,
+            tokenService.Object,
+            signInManager.Object
+        );
+
+        // Act
+        var result = await controller.Login(new LoginDto
+        {
+            Username = "test",
+            Password = "wrongpass"
+        });
+
+        // Assert
+        Assert.IsType<UnauthorizedObjectResult>(result);
+    }
 }
