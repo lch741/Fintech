@@ -9,7 +9,7 @@ using Moq;
 
 namespace api.Tests;
 
-public class AccountTest
+public class AccountControllerTests
 {
     private static Mock<UserManager<AppUser>> MockUserManager()
     {
